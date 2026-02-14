@@ -6,7 +6,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as LocalAuthentication from "expo-local-authentication";
 import { useCallback, useEffect, useMemo, useState } from "react";
-
+import { useContext } from "react";
+// import { ThemeContext } from "../../context/ThemeContext";
 
 import {
   Alert,
@@ -46,8 +47,8 @@ export default function SettingsScreen() {
   const [iotAlertsEnabled, setIotAlertsEnabled] = useState(true);
   const [temperatureAlerts, setTemperatureAlerts] = useState(true);
   const [gasAlerts, setGasAlerts] = useState(true);
-
-  const [darkMode, setDarkMode] = useState(false); // tu peux le connecter à ton thème global
+  // const { isDark, toggleTheme } = useContext(ThemeContext);
+  // const [darkMode, setDarkMode] = useState(false); // tu peux le connecter à ton thème global
   const [language, setLanguage] = useState("fr");
   const [fontScale, setFontScale] = useState("normal"); // small / normal / large
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -90,7 +91,7 @@ export default function SettingsScreen() {
       setTemperatureAlerts(!!s.temperatureAlerts);
       setGasAlerts(!!s.gasAlerts);
 
-      setDarkMode(!!s.darkMode);
+      // setDarkMode(!!s.darkMode);
       setLanguage(s.language || "fr");
       setFontScale(s.fontScale || "normal");
       setReduceMotion(!!s.reduceMotion);
@@ -109,7 +110,7 @@ export default function SettingsScreen() {
         iotAlertsEnabled,
         temperatureAlerts,
         gasAlerts,
-        darkMode,
+        // darkMode,
         language,
         fontScale,
         reduceMotion,
@@ -262,7 +263,6 @@ export default function SettingsScreen() {
   return (
     <View style={[styles.container, { backgroundColor: colors.bg }]}>
       <Text style={[styles.title, { color: colors.text, fontSize: 22 * scale }]}>Settings</Text>
-
       {/* NOTIFICATIONS */}
       <Section title="NOTIFICATIONS">
         <Row
@@ -315,22 +315,6 @@ export default function SettingsScreen() {
               trackColor={{ false: colors.border, true: colors.accent }}
               thumbColor={"#fff"}
               disabled={!iotAlertsEnabled}
-            />
-          }
-        />
-      </Section>
-
-      {/* APPEARANCE */}
-      <Section title="APPEARANCE">
-        <Row
-          label="Dark Mode"
-          subLabel="Switch app appearance"
-          right={
-            <Switch
-              value={darkMode}
-              onValueChange={setDarkMode}
-              trackColor={{ false: colors.border, true: colors.accent }}
-              thumbColor={"#fff"}
             />
           }
         />
