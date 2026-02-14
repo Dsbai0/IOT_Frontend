@@ -7,7 +7,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as LocalAuthentication from "expo-local-authentication";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useContext } from "react";
-// import { ThemeContext } from "../../context/ThemeContext";
 
 import {
   Alert,
@@ -47,8 +46,6 @@ export default function SettingsScreen() {
   const [iotAlertsEnabled, setIotAlertsEnabled] = useState(true);
   const [temperatureAlerts, setTemperatureAlerts] = useState(true);
   const [gasAlerts, setGasAlerts] = useState(true);
-  // const { isDark, toggleTheme } = useContext(ThemeContext);
-  // const [darkMode, setDarkMode] = useState(false); // tu peux le connecter à ton thème global
   const [language, setLanguage] = useState("fr");
   const [fontScale, setFontScale] = useState("normal"); // small / normal / large
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -91,7 +88,6 @@ export default function SettingsScreen() {
       setTemperatureAlerts(!!s.temperatureAlerts);
       setGasAlerts(!!s.gasAlerts);
 
-      // setDarkMode(!!s.darkMode);
       setLanguage(s.language || "fr");
       setFontScale(s.fontScale || "normal");
       setReduceMotion(!!s.reduceMotion);
@@ -110,7 +106,6 @@ export default function SettingsScreen() {
         iotAlertsEnabled,
         temperatureAlerts,
         gasAlerts,
-        // darkMode,
         language,
         fontScale,
         reduceMotion,
@@ -126,7 +121,6 @@ export default function SettingsScreen() {
     iotAlertsEnabled,
     temperatureAlerts,
     gasAlerts,
-    darkMode,
     language,
     fontScale,
     reduceMotion,
